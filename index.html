@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="An independent design concept celebrating Ferrari: a scroll-driven journey from Maranello through six icons to the cars of today.">
+<title>Ferrari · An Independent Design Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Oswald:wght@400;500;600&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0C;--red:#D40000;--white:#F5F3EE;--yel:#FFD400;--line:rgba(245,243,238,.16);--out:cubic-bezier(.2,.8,.2,1);box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--white);font:300 1.0625rem/1.7 'Inter Tight',system-ui,sans-serif;font-kerning:normal;font-feature-settings:"kern","liga","calt";text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overflow-x:hidden;hanging-punctuation:first}
+h1,h2,h3,.disp,.hl{font-family:'Bodoni Moda','Didot',Georgia,serif;font-optical-sizing:auto;font-weight:500;line-height:.98;letter-spacing:-.025em;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.6rem,6.6vw,6rem)}
+h3{font-size:clamp(1.8rem,3vw,2.6rem)}
+em{font-style:italic;color:var(--red)}
+p{margin:0 0 1.1em;max-width:54ch;text-wrap:pretty;opacity:.82}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+svg{display:block}
+:focus-visible{outline:2px solid var(--yel);outline-offset:3px}
+.lab{font:500 .78rem 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.22em}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+section{position:relative}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--red);color:#fff;border:0;padding:16px 34px;font:500 .85rem 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));transition:background .4s,color .4s}
+.btn:hover{background:var(--white);color:var(--bg)}
+.btn.o{background:transparent;color:var(--white);box-shadow:none;position:relative}
+.btn.o::before{content:'';position:absolute;inset:0;border:1px solid var(--white);clip-path:inherit}
+.btn.o:hover{background:var(--white);color:var(--bg)}
+/* sectors + nav */
+.sect{position:fixed;top:0;left:0;right:0;height:4px;z-index:90;display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:var(--bg)}
+.sect i{display:block;background:rgba(245,243,238,.12);position:relative;overflow:hidden}
+.sect i::after{content:'';position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(var(--f,0));background:var(--c)}
+.sect i:nth-child(1){--c:#A855F7}.sect i:nth-child(2){--c:#22C55E}.sect i:nth-child(3){--c:var(--yel)}
+.nav{position:fixed;top:4px;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:calc(18px + env(safe-area-inset-top,0px)) 32px 18px;transition:background .5s,border-color .5s;border-bottom:1px solid transparent}
+.nav.sc{background:rgba(11,11,12,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.logo{text-decoration:none;display:flex;align-items:baseline;gap:12px}
+.logo b{font:600 1.7rem/1 'Bodoni Moda',serif;letter-spacing:.14em;text-transform:uppercase}
+.logo span{opacity:.6}
+.links{display:flex;gap:34px;align-items:center}
+.links a:not(.btn){font:500 .8rem 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;position:relative;padding:6px 0}
+.links a:not(.btn)::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--out)}
+.links a:hover::after,.links a.on::after{transform:none}
+.links .btn{padding:11px 24px}
+.lap{font:500 .85rem 'Oswald',sans-serif;letter-spacing:.14em;font-variant-numeric:tabular-nums;opacity:.85}
+.lap b{color:var(--yel);font-weight:500;margin-left:6px}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--white);padding:9px 18px;font:500 .78rem 'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+/* hero */
+.hero{height:400vh}
+.stk{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(90% 60% at 50% 110%,rgba(212,0,0,calc(.25 + var(--g,0)*.5)),transparent 70%),var(--bg)}
+.bgt{position:absolute;left:0;top:48%;white-space:nowrap;font:italic 500 clamp(12rem,32vw,34rem)/.8 'Bodoni Moda',serif;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(245,243,238,.1);transform:translate3d(0,-50%,0);will-change:transform;pointer-events:none;user-select:none}
+.meta{position:absolute;top:calc(96px + env(safe-area-inset-top,0px));left:32px;right:32px;display:flex;justify-content:space-between;opacity:.7}
+.heads{position:absolute;left:32px;right:32px;top:26%;display:grid;max-width:1200px}
+.hl{grid-area:1/1;font-size:clamp(3.2rem,9.4vw,9rem);line-height:.94;font-weight:500}
+.hl .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .06em .08em 0;margin-right:.12em}
+.hl .i{display:inline-block;will-change:transform}
+.cw{position:absolute;left:0;bottom:calc(17% - min(4.9vw,51px));width:min(94vw,980px);will-change:transform;z-index:3}
+.car{width:100%;height:auto;overflow:visible}
+.car .body{fill:var(--paint,#D40000);transition:fill .7s}
+.lane{position:absolute;right:92%;height:2px;background:linear-gradient(90deg,transparent,rgba(245,243,238,.8));width:60%;opacity:calc(var(--sp,0)*.85);transform:scaleX(calc(.25 + var(--sp,0)));transform-origin:100% 50%}
+.road{position:absolute;left:0;right:0;bottom:calc(17% - 2px);height:2px;background:repeating-linear-gradient(90deg,rgba(245,243,238,.55) 0 46px,transparent 46px 92px);z-index:2}
+.road::before{content:'';position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--line)}
+.hud{position:absolute;right:32px;bottom:calc(env(safe-area-inset-bottom,0px) + 30px);width:170px;z-index:4;text-align:center}
+.hud svg{width:170px;height:170px;transform:rotate(135deg)}
+.hud circle{fill:none;stroke-width:7}
+.hud .tr{stroke:rgba(245,243,238,.14)}.hud .vl{stroke:var(--red);transition:stroke .3s}
+.hud .rd{position:absolute;inset:0;display:grid;place-content:center}
+.hud b{font:500 3rem/1 'Oswald',sans-serif;font-variant-numeric:tabular-nums}
+.hud small{font:500 .65rem 'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.hud .gr{position:absolute;left:0;right:0;bottom:-6px;font:500 .78rem 'Oswald',sans-serif;letter-spacing:.2em;color:var(--yel)}
+.cue{position:absolute;left:32px;bottom:calc(env(safe-area-inset-bottom,0px) + 30px);z-index:4;opacity:.7}
+/* manifesto */
+.man{padding:22vh 0 18vh}
+.man p{max-width:none;opacity:1}
+.mt{font:500 clamp(2rem,5vw,4.4rem)/1.12 'Bodoni Moda',serif;letter-spacing:-.025em;max-width:22em;text-wrap:balance}
+.mt span{opacity:.14;transition:color .4s}
+.mt span.r{color:var(--red);font-style:italic}
+/* icons */
+.pinI{background:linear-gradient(180deg,var(--bg),#101012 50%,var(--bg))}
+.sI{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:5vh}
+.sI .hd{padding-top:70px}
+.trk{display:flex;gap:6vw;padding:0 8vw 0 max(28px,calc((100vw - 1280px)/2 + 28px));will-change:transform;align-items:stretch}
+.it{flex:0 0 min(86vw,820px);display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;will-change:transform,opacity}
+.it .md{aspect-ratio:4/3;background:radial-gradient(circle at 50% 75%,#241214,#0e0e10);overflow:hidden;position:relative;border:1px solid var(--line)}
+.it .md .fb{--arch:#0e0e10;display:grid;place-items:center;height:100%;padding:10%}
+.it .yr{font:italic 500 clamp(4.5rem,10vw,9rem)/.8 'Bodoni Moda',serif;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px var(--white);margin-bottom:12px}
+.it h3{margin-bottom:12px}
+.it p{font-size:.98rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.chips span{border:1px solid var(--line);padding:4px 14px;font:500 .72rem 'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.prog{height:2px;background:var(--line);margin:0 max(28px,calc((100vw - 1280px)/2 + 28px))}
+.prog i{display:block;height:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
+.fn{position:absolute;right:32px;bottom:20px;opacity:.5;font-size:.8rem;margin:0}
+/* models */
+.mod{padding:140px 0}
+.mod .gr{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;margin-top:60px}
+.stage{perspective:1400px;aspect-ratio:16/10;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 85%,rgba(212,0,0,.22),transparent 65%);border-bottom:1px solid var(--line);--paint:#D40000;--arch:#0B0B0C}
+.stage .tilt{width:100%;transform-style:preserve-3d;transition:transform .5s var(--out)}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:26px}
+.tabs button{flex:1;background:none;border:0;color:var(--white);font:500 .85rem 'Oswald',sans-serif;letter-spacing:.18em;text-transform:uppercase;padding:14px 8px;cursor:pointer;position:relative;opacity:.55;transition:opacity .3s}
+.tabs button[aria-selected=true]{opacity:1}
+.tabs button::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--red);transform:scaleX(0);transition:transform .5s var(--out)}
+.tabs button[aria-selected=true]::after{transform:none}
+.sw{display:flex;gap:12px;align-items:center;margin:0 0 26px}
+.sw button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;outline:1px solid var(--line);outline-offset:3px;cursor:pointer;background:var(--c);transition:transform .3s var(--out)}
+.sw button:hover{transform:scale(1.15)}.sw button[aria-pressed=true]{outline:2px solid var(--white)}
+.sw span{margin-left:8px;opacity:.8}
+.sp{display:grid;gap:22px;margin-top:10px}
+.sp .r{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:6px 14px}
+.sp b{font:500 2.4rem/1 'Oswald',sans-serif;font-variant-numeric:tabular-nums}.sp b small{font-size:.9rem;opacity:.6;margin-left:6px;letter-spacing:.1em}
+.sp .bar{grid-column:1/-1;height:2px;background:var(--line);position:relative}.sp .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--red);transition:width 1.1s var(--out)}
+.desc{margin-top:26px}
+/* drive */
+.drv{padding:140px 0 60px}
+.stack{margin-top:60px;display:grid;gap:0}
+.cd{position:sticky;top:calc(96px + var(--k)*22px);height:min(70vh,560px);display:grid;grid-template-columns:1fr 1fr;background:#131315;border:1px solid var(--line);overflow:hidden;margin-bottom:40px;transform-origin:50% 0;will-change:transform}
+.cd .tx{padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between}
+.cd .n{font:italic 500 clamp(4rem,8vw,7rem)/.8 'Bodoni Moda',serif;color:transparent;-webkit-text-stroke:1px var(--red)}
+.cd .im{background:linear-gradient(135deg,#2a0507,#0e0e10);position:relative;overflow:hidden}
+.cd .im::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#131315,transparent 30%)}
+.cd:nth-child(even) .im{order:-1}.cd:nth-child(even) .im::after{background:linear-gradient(270deg,#131315,transparent 30%)}
+/* footer */
+footer{padding:120px 0 40px;overflow:hidden;border-top:1px solid var(--line)}
+.mq{white-space:nowrap;will-change:transform;font:italic 500 clamp(5rem,16vw,15rem)/.9 'Bodoni Moda',serif;letter-spacing:-.04em;margin-bottom:80px}
+.mq span{margin-right:.5em}.mq span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--white)}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;border-top:1px solid var(--line);padding-top:30px}
+.fg p{font-size:.88rem;margin:0 0 6px}
+@media (max-width:960px){
+.burger{display:block}.lap{display:none}
+.links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:rgba(11,11,12,.97);border-bottom:1px solid var(--line);padding:10px 32px 26px}
+.links.open{display:flex}.links a:not(.btn){padding:14px 0;font-size:1rem}.links .btn{margin-top:12px}
+.hud{transform:scale(.7);transform-origin:100% 100%;right:14px}.meta{left:20px;right:20px}.heads{left:20px;right:20px;top:20%}.cue{left:20px}
+.it{grid-template-columns:1fr;gap:16px;align-content:center}.it .md{aspect-ratio:16/10}.fn{position:static;padding:0 28px;margin-top:10px}
+.mod .gr{grid-template-columns:1fr;gap:34px}.cd{grid-template-columns:1fr;height:auto;min-height:480px;grid-template-rows:200px 1fr}.cd .im,.cd:nth-child(even) .im{order:-1}.cd .im::after{background:linear-gradient(0deg,#131315,transparent 40%)!important}
+.fg{grid-template-columns:1fr}.nav{padding-left:20px;padding-right:20px}.mod,.drv{padding-top:90px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="sect" id="sect" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="nav" id="nav">
+<a class="logo" href="#top"><b>Ferrari</b><span class="lab">Concept</span></a>
+<span class="lap lab" aria-hidden="true">Lap<b id="lap">0:00.000</b></span>
+<nav class="links" id="links" aria-label="Main"><a href="#story">Story</a><a href="#icons">Icons</a><a href="#models">Models</a><a href="#drive">Drive</a><a class="btn" href="#models">Configure</a></nav>
+<button class="burger" aria-expanded="false" aria-controls="links">Menu</button>
+</header>
+
+<main>
+<section class="hero" id="top" aria-label="Introduction">
+<div class="stk" id="stk">
+<div class="bgt" id="bgt" aria-hidden="true">Rosso Corsa&nbsp;Rosso Corsa</div>
+<div class="meta lab"><span>Maranello, Italia</span><span>Primo Ferrari · 1947</span></div>
+<div class="heads" id="heads"></div>
+<div class="road" id="road"></div>
+<div class="cw" id="cw" aria-hidden="true"><span class="lane" style="bottom:22%;width:70%"></span><span class="lane" style="bottom:36%;width:46%"></span><span class="lane" style="bottom:48%;width:58%"></span><span class="lane" style="bottom:12%;width:38%"></span><span id="carbox"></span></div>
+<div class="hud" aria-hidden="true"><svg viewBox="0 0 170 170"><circle class="tr" cx="85" cy="85" r="74" stroke-dasharray="348.7 465"/><circle class="vl" id="vl" cx="85" cy="85" r="74" stroke-dasharray="348.7 465" stroke-dashoffset="348.7"/></svg><div class="rd"><b id="spd">0</b><small>km/h</small></div><div class="gr" id="gear">Gear 1</div></div>
+<div class="cue lab">Scroll to accelerate</div>
+</div>
+</section>
+
+<section class="man" id="story"><div class="wrap">
+<p class="lab" style="margin-bottom:34px;color:var(--red)">The idea</p>
+<p class="mt" id="mt">&ldquo;Every Ferrari starts as one stubborn idea: that a machine can be more than transport. It can be sound, speed and feeling—made by hand, tuned by ear, and finished only when it is right.&rdquo;</p>
+</div></section>
+
+<section class="pinI" id="icons"><div class="sI" id="sI">
+<div class="wrap hd" style="width:100%"><p class="lab" style="color:var(--red);margin-bottom:14px">Six icons</p><h2>The cars that<br><em>changed the road.</em></h2></div>
+<div class="trk" id="trk"></div>
+<div class="prog"><i id="pg"></i></div>
+<p class="fn">Figures are approximate. Check official sources.</p>
+</div></section>
+
+<section class="mod" id="models"><div class="wrap">
+<p class="lab" style="color:var(--red);margin-bottom:14px">Today</p><h2>Choose a car.<br><em>Choose a colour.</em></h2>
+<div class="gr">
+<div class="stage" id="stage"><div class="tilt" id="tilt"></div></div>
+<div>
+<div class="tabs" id="tabs" role="tablist" aria-label="Models"></div>
+<div class="sw" id="sw" role="group" aria-label="Paint colour"></div>
+<div class="sp" id="sp"></div>
+<p class="desc" id="desc"></p>
+</div>
+</div>
+</div></section>
+
+<section class="drv" id="drive"><div class="wrap">
+<p class="lab" style="color:var(--red);margin-bottom:14px">Beyond the car</p><h2>Four ways<br>to <em>belong.</em></h2>
+<div class="stack" id="stack">
+<article class="cd" style="--k:0"><div class="tx"><span class="n">01</span><div><h3>Take the wheel</h3><p>Track days with expert instructors teach you the car, the circuit and a few things about yourself.</p><a class="btn" href="#top">Enquire</a></div></div><div class="im"><img src="images/drive-1.jpg" alt="A red sports car on a racing circuit" loading="lazy" onerror="this.remove()"></div></article>
+<article class="cd" style="--k:1"><div class="tx"><span class="n">02</span><div><h3>Walk through history</h3><p>A museum visit, a factory tour and a look at the engines that built the legend.</p><a class="btn" href="#top">Plan a visit</a></div></div><div class="im"><img src="images/drive-2.jpg" alt="Historic cars in a museum hall" loading="lazy" onerror="this.remove()"></div></article>
+<article class="cd" style="--k:2"><div class="tx"><span class="n">03</span><div><h3>Make it yours</h3><p>Choose the paint, the leather and the stitching until the car looks like it was made for no one else.</p><a class="btn" href="#models">Configure</a></div></div><div class="im"><img src="images/drive-3.jpg" alt="Custom interior with red leather" loading="lazy" onerror="this.remove()"></div></article>
+<article class="cd" style="--k:3"><div class="tx"><span class="n">04</span><div><h3>Meet the others</h3><p>Owners&rsquo; clubs and gatherings around the world, united by one colour and one sound.</p><a class="btn" href="#top">Find a club</a></div></div><div class="im"><img src="images/drive-4.jpg" alt="Row of cars at a gathering" loading="lazy" onerror="this.remove()"></div></article>
+</div>
+</div></section>
+</main>
+
+<footer><div class="mq" id="mq" aria-hidden="true"><span>Rosso Corsa</span><span>Maranello</span><span>Rosso Corsa</span><span>Maranello</span><span>Rosso Corsa</span><span>Maranello</span></div>
+<div class="wrap"><div class="fg"><div><h3 style="font-size:2rem">Ferrari, <em>reimagined</em><br>as a story.</h3></div>
+<div><p class="lab" style="color:var(--red)">Explore</p><p><a href="#story" style="text-decoration:none">Story</a></p><p><a href="#icons" style="text-decoration:none">Icons</a></p><p><a href="#models" style="text-decoration:none">Models</a></p><p><a href="#drive" style="text-decoration:none">Drive</a></p></div>
+<div><p class="lab" style="color:var(--red)">Notice</p><p style="opacity:.65">An independent design concept. Not affiliated with, authorised or endorsed by Ferrari S.p.A. Ferrari and related names and marks belong to their respective owners. All figures are approximate.</p></div></div></div></footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t,ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+/* car drawing */
+let cid=0;
+function CAR(){const u='c'+cid++;
+const wh=x=>'<circle cx="'+x+'" cy="178" r="47" fill="var(--arch,#0B0B0C)"/><g class="wh" style="transform-box:fill-box;transform-origin:center"><circle cx="'+x+'" cy="178" r="40" fill="#111"/><circle cx="'+x+'" cy="178" r="29" fill="#cfcfcf"/><circle cx="'+x+'" cy="178" r="29" fill="url(#'+u+'r)"/><g stroke="#5a5a5a" stroke-width="5">'+[0,72,144,216,288].map(a=>'<line x1="'+x+'" y1="178" x2="'+(x+27*Math.cos(a*Math.PI/180)).toFixed(1)+'" y2="'+(178+27*Math.sin(a*Math.PI/180)).toFixed(1)+'"/>').join('')+'</g><circle cx="'+x+'" cy="178" r="6" fill="#222"/></g>';
+return'<svg class="car" viewBox="0 0 800 260"><defs><linearGradient id="'+u+'g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".4"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><radialGradient id="'+u+'r"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient></defs>'+
+'<ellipse cx="410" cy="222" rx="370" ry="11" fill="#000" opacity=".6"/>'+
+'<path class="body" d="M52 198L48 170C48 152 60 142 84 138L170 126C212 100 264 84 332 78C384 74 452 72 502 76C550 80 592 100 630 116L722 134C752 140 764 152 766 174L766 198Z"/>'+
+'<path d="M52 198L48 170C48 152 60 142 84 138L170 126C212 100 264 84 332 78C384 74 452 72 502 76C550 80 592 100 630 116L722 134C752 140 764 152 766 174L766 198Z" fill="url(#'+u+'g)"/>'+
+'<path d="M338 100C378 89 450 86 496 91C534 95 564 107 594 121L330 121Z" fill="#0a0d12" opacity=".92"/><path d="M338 100C378 89 450 86 496 91" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/>'+
+'<path d="M470 152C500 147 542 149 578 160L578 172C542 166 500 164 470 168Z" fill="#050505" opacity=".85"/><path d="M330 121L316 190" stroke="#000" stroke-opacity=".4" stroke-width="2" fill="none"/>'+
+'<path d="M700 140C730 144 752 150 762 160L718 154Z" fill="#fff6c2"/><path d="M50 164L86 154L86 162L52 172Z" fill="#ff2a2a"/>'+
+wh(195)+wh(615)+'</svg>'}
+function FB(i){return'<div class="fb" style="--paint:'+['#9a1b1b','#D40000','#F2C800','#e9e9e9','#D40000','#1F4E8C'][i]+'">'+CAR()+'</div>'}
+$('#carbox').innerHTML=CAR();
+/* nav */
+const nav=$('#nav'),bg=$('.burger'),lk=$('#links');
+bg.onclick=()=>{const o=lk.classList.toggle('open');bg.setAttribute('aria-expanded',o);bg.textContent=o?'Close':'Menu'};
+$$('#links a').forEach(a=>a.addEventListener('click',()=>{lk.classList.remove('open');bg.textContent='Menu'}));
+const sl=$$('#links a:not(.btn)');
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)sl.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+['story','icons','models','drive'].forEach(id=>spy.observe($('#'+id)));
+/* headline layers */
+const LY=['Born in <em>Maranello.</em>','Tuned by <em>obsession.</em>','Made to be <em>driven.</em>'];
+const heads=$('#heads');
+heads.innerHTML=LY.map((t,k)=>'<'+(k?'div':'h1')+' class="hl">'+t.split(' ').map(w=>'<span class="w"><span class="i">'+w+'</span></span>').join(' ')+'</'+(k?'div':'h1')+'>').join('');
+const layers=$$('.hl').map(h=>[...h.querySelectorAll('.i')]);
+function setLayer(ws,t,first,last){ws.forEach((w,i)=>{const en=first?1:clamp((t-i*.03)/.16),ex=last?0:clamp((t-.8-i*.025)/.16);
+w.style.transform='translate3d(0,'+((1-ease(en))*112-ease(ex)*112)+'%,0)';w.style.opacity=(en*(1-ex)).toFixed(3)})}
+/* manifesto */
+const mt=$('#mt');const RED=['sound,','speed','feeling—made'];
+mt.innerHTML=mt.textContent.split(' ').map(w=>'<span'+(/sound|speed|feeling/.test(w)?' class="r"':'')+'>'+w+'</span>').join(' ');const mw=[...mt.children];
+/* icons */
+const IC=[[1962,'250 GTO','Three litres of V12 and a racing pedigree made it one of the most coveted cars ever built.',['3.0 L V12','≈300 cv','≈36 built']],
+[1987,'F40','The last Ferrari approved by Enzo himself, stripped to the essentials and brutally quick.',['2.9 L twin-turbo V8','≈478 cv','≈324 km/h']],
+[2002,'Enzo','Formula 1 technology for the road, named after the founder.',['6.0 L V12','≈660 cv','≈400 built']],
+[2013,'LaFerrari','The first Ferrari hybrid hypercar, adding electric boost to a screaming V12.',['6.3 L V12 + electric','≈963 cv','Hybrid']],
+[2022,'296 GTB','A six-cylinder hybrid that brought a legendary sound into a new era.',['3.0 L V6 hybrid','≈830 cv','Plug-in']],
+[2025,'F80','The flagship of the new era, built in a strictly limited run.',['3.0 L V6 hybrid','≈1,200 cv','799 units']]];
+const trk=$('#trk');
+trk.innerHTML=IC.map((c,i)=>'<article class="it"><div class="md"><img src="images/icon-'+(i+1)+'.jpg" alt="Ferrari '+c[1]+'" loading="lazy" onerror="this.parentNode.innerHTML=FB('+i+')"></div><div><div class="yr">'+c[0]+'</div><h3>'+c[1]+'</h3><p>'+c[2]+'</p><div class="chips">'+c[3].map(x=>'<span>'+x+'</span>').join('')+'</div></div></article>').join('');
+/* models */
+const M=[{n:'296 GTB',e:'3.0 L V6 hybrid',p:830,a:2.9,t:330,d:'A compact, mid-engined plug-in hybrid. Light, agile and loud, with an electric motor filling in every gap.'},
+{n:'12Cilindri',e:'6.5 L V12',p:830,a:2.9,t:340,d:'A front-engined V12 grand tourer that revs to the sky and wraps its driver in a wide, calm cockpit.'},
+{n:'F80',e:'3.0 L V6 hybrid',p:1200,a:2.15,t:350,d:'The limited-edition flagship. A hybrid hypercar built to show everything the engineers know.'}];
+const PT=[['Rosso Corsa','#D40000'],['Giallo Modena','#F2C800'],['Bianco Avus','#E9E9E9'],['Nero Daytona','#1a1a1d'],['Blu Tour de France','#1F4E8C']];
+let mi=0;$('#tilt').innerHTML=CAR();
+$('#tabs').innerHTML=M.map((m,i)=>'<button role="tab" aria-selected="'+(i===0)+'" data-i="'+i+'">'+m.n+'</button>').join('');
+$('#sw').innerHTML=PT.map((c,i)=>'<button style="--c:'+c[1]+'" aria-pressed="'+(i===0)+'" aria-label="'+c[0]+'" data-i="'+i+'"></button>').join('')+'<span class="lab" id="pn">Rosso Corsa</span>';
+$('#sp').innerHTML=[['Power','p','cv',1200],['0–100 km/h','a','s',3.2],['Top speed','t','km/h',350]].map((r,i)=>'<div class="r"><span class="lab">'+r[0]+'</span><b><span id="v'+i+'">0</span><small>'+r[2]+'</small></b><div class="bar"><i id="b'+i+'"></i></div></div>').join('');
+const cur=[0,0,0];
+function tween(i,to,dec){const from=cur[i],t0=performance.now(),d=rm?1:900,el=$('#v'+i);const f=t=>{const p=clamp((t-t0)/d),v=lerp(from,to,1-Math.pow(1-p,3));cur[i]=v;el.textContent=dec?v.toFixed(2).replace(/0$/,''):Math.round(v).toLocaleString('en-US');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+function showM(i){mi=i;const m=M[i];$$('#tabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+tween(0,m.p);tween(1,m.a,1);tween(2,m.t);
+$('#b0').style.width=(m.p/1200*100)+'%';$('#b1').style.width=(3.2/m.a/(3.2/2.15)*100)+'%';$('#b2').style.width=(m.t/350*100)+'%';
+$('#desc').textContent=m.n+' · '+m.e+'. '+m.d}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)showM(+b.dataset.i)});
+$('#sw').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const c=PT[+b.dataset.i];$('#stage').style.setProperty('--paint',c[1]);$$('#sw button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#pn').textContent=c[0]});
+$('#stage').addEventListener('pointermove',e=>{if(rm)return;const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;$('#tilt').style.transform='rotateY('+(x*14).toFixed(2)+'deg) rotateX('+(-y*8).toFixed(2)+'deg)'});
+$('#stage').addEventListener('pointerleave',()=>$('#tilt').style.transform='');
+new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){showM(0);o.disconnect()}},{threshold:.3}).observe($('#stage'));
+/* scroll engine */
+const stk=$('#stk'),hero=$('#top'),cw=$('#cw'),bgt=$('#bgt'),road=$('#road'),sI=$('#sI'),pinI=$('#icons'),sect=$('#sect').children,mq=$('#mq');
+const cards=$$('.cd'),items=$$('.it');
+let sy=scrollY,cy=sy,lastY=cy,vel=0,docH=0,vh=innerHeight,vw=innerWidth;
+function size(){vh=innerHeight;vw=innerWidth;pinI.style.height=(vh+trk.scrollWidth-vw+vh*.2)+'px';docH=document.documentElement.scrollHeight}
+addEventListener('resize',size);addEventListener('load',size);size();
+addEventListener('scroll',()=>{sy=scrollY;nav.classList.toggle('sc',sy>40)},{passive:true});
+const GR=[0,60,110,160,215,265,310,345];
+const lapF=s=>{const m=Math.floor(s/60),r=s-m*60;return m+':'+(r<10?'0':'')+r.toFixed(3)};
+let lastSpd=-1;
+function frame(){cy=rm?sy:cy+(sy-cy)*.11;if(Math.abs(sy-cy)<.1)cy=sy;const y=cy;vel=lerp(vel,cy-lastY,.2);lastY=cy;
+/* lap + sectors */
+const mx=Math.max(1,docH-vh),p=clamp(y/mx);for(let i=0;i<3;i++)sect[i].style.setProperty('--f',clamp(p*3-i).toFixed(3));$('#lap').textContent=lapF(p*88.341);
+/* hero */
+const hh=hero.offsetHeight-vh,hp=clamp(y/hh);
+if(y<hero.offsetHeight+50){
+const x=lerp(-.1*vw,vw+.12*vw,Math.pow(hp,.92)),cwW=cw.offsetWidth,s=cwW/800;
+cw.style.transform='translate3d('+x.toFixed(1)+'px,0,0)';cw.style.setProperty('--sp',hp<.015?0:Math.min(1,hp*3).toFixed(3));
+const deg=x/(40*s)*57.3;$$('#cw .wh').forEach(w=>w.style.transform='rotate('+deg.toFixed(1)+'deg)');
+road.style.backgroundPosition=(-x).toFixed(1)+'px 0';bgt.style.transform='translate3d('+(-hp*vw*1.2).toFixed(1)+'px,-50%,0)';stk.style.setProperty('--g',hp.toFixed(3));
+setLayer(layers[0],clamp(hp/.34),true,false);setLayer(layers[1],clamp((hp-.33)/.34),false,false);setLayer(layers[2],clamp((hp-.66)/.34),false,true);
+const spd=Math.round(Math.pow(hp,.85)*340);
+if(spd!==lastSpd){lastSpd=spd;let g=0;while(g<7&&spd>=GR[g+1])g++;const lo=GR[g],hi=GR[g+1],rpm=clamp(.22+.78*((spd-lo)/(hi-lo)));
+$('#spd').textContent=spd;$('#gear').textContent=spd===0?'Neutral':'Gear '+(g+1);$('#vl').style.strokeDashoffset=(348.7*(1-rpm)).toFixed(1);$('#vl').style.stroke=rpm>.92?'#FFD400':''}}
+/* manifesto */
+const st=mt.getBoundingClientRect();if(st.top<vh&&st.bottom>0){const pr=clamp((vh*.8-st.top)/(st.height+vh*.25)),n=mw.length;mw.forEach((w,i)=>{w.style.opacity=(.14+.86*clamp((pr*(n+5)-i)/4)).toFixed(2)})}
+/* icons pin */
+const pr=pinI.getBoundingClientRect();if(pr.top<vh&&pr.bottom>0){const ip=clamp(-pr.top/(pr.height-vh)),dist=trk.scrollWidth-vw+vw*.06;trk.style.transform='translate3d('+(-ip*dist).toFixed(1)+'px,0,0)';$('#pg').style.transform='scaleX('+ip.toFixed(3)+')';
+items.forEach(it=>{const r=it.getBoundingClientRect(),c=(r.left+r.width/2-vw/2)/vw,a=clamp(1-Math.abs(c)*.9);it.style.opacity=(.25+.75*a).toFixed(2);it.style.transform='scale('+(.9+.1*a).toFixed(3)+')'})}
+/* stacking cards */
+cards.forEach((c,i)=>{const nx=cards[i+1];if(!nx){return}const top=nx.getBoundingClientRect().top,k=clamp(1-(top-(96+(i+1)*22))/(c.offsetHeight*.9));c.style.transform='scale('+(1-.05*k).toFixed(3)+')';c.style.filter='brightness('+(1-.45*k).toFixed(2)+')'});
+/* footer marquee */
+const half=mq.scrollWidth/2||1;mq.style.transform='translate3d('+(-((y*.5)%half)).toFixed(1)+'px,0,0) skewX('+(rm?0:clamp(-vel*.25,-18,18)).toFixed(2)+'deg)';
+requestAnimationFrame(frame)}
+frame();
+</script>
+</body>
+</html>
